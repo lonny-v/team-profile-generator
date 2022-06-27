@@ -85,6 +85,73 @@ const init = () => {
             };
         });
     };
+
+    const engineerGen = () => {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'engineerName',
+                message: `What is the engineer's name?`,
+                validate: nameInput => {
+                    if (nameInput) {
+                        return true;
+                    } else {
+                        console.log(`Please enter the engineer's name`);
+                        return false;
+                    };
+                }
+            },
+            {
+                type: 'input',
+                name: 'engineerId',
+                message: 'Engineer ID:',
+                validate: idInput => {
+                    if (idInput) {
+                        return true;
+                    } else {
+                        console.log(`Please enter the engineer's ID`)
+                        return false;
+                    };
+                }
+            },
+            {
+                type: 'input',
+                name: 'engineerEmail',
+                message: `What is the engineer's email address?`,
+                validate: emailInput => {
+                    if (emailInput) {
+                        return true;
+                    } else {
+                        console.log(`Please enter the engineer's email address`);
+                        return false;
+                    };
+                }
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'What is their GitHub username?',
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log(`Please enter the Engineer's GitHub username`);
+                        return false;
+                    };
+                }
+            }
+        ]).then(engineer => {
+            const generated = new Engineer(
+                engineer.engineerName,
+                engineer.engineerId,
+                engineer.engineerEmail,
+                engineer.github
+            );
+            employees.push(generated);
+            teamGen();
+        });
+    };
+
 }
 
 
