@@ -64,6 +64,27 @@ const init = () => {
             teamGen();
         });
     };
+    const teamGen = () => {
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'role',
+                message: `What employee role do you want to add?`,
+                choices: ['Engineer', 'Intern', 'Finish building my team']
+            },
+        ]).then(input => {
+            switch (input.role) {
+                case 'Engineer':
+                    engineerGen();
+                    break;
+                case 'Intern':
+                    internGen();
+                    break;
+                default:
+                    writeFile(pageGen(employees));
+            };
+        });
+    };
 }
 
 
